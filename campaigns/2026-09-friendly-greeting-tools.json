@@ -1,0 +1,15 @@
+{
+  "name": "2026-09-friendly-greeting-tools",
+  "ecosystem": "pypi",
+  "category": "malicious",
+  "packages": [
+    "friendly-greeting-tools",
+    "friendly-tools"
+  ],
+  "iocs": {
+    "urls": [
+      "s3://pkusinski-external/"
+    ]
+  },
+  "description": "Two packages by the same author that pass themselves off as greeting helpers. A run-demo entry point, described as print-only, execs a gzip and base64 blob that takes the Snowflake session token, switches to ACCOUNTADMIN and copies table data to an external S3 bucket. We checked friendly-greeting-tools 0.3.1 and friendly-tools 0.2 only. Both are listed in the OSSF malicious-packages database as MAL-2026-17416 and MAL-2026-17419; friendly-tools was our submission (opened 2026-10-01, merged 2026-10-02), and kam193 and Amazon Inspector reported the same packages independently."
+}
