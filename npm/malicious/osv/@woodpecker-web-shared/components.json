@@ -22,12 +22,5 @@
         "smilinghyena4@gmail.com"
       ]
     }
-  ],
-  "database_specific": {
-    "iocs": {
-      "domains": [
-        "webhook.site"
-      ]
-    }
-  }
+  ]
 }
