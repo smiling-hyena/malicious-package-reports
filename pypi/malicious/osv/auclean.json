@@ -1,8 +1,8 @@
 {
   "schema_version": "1.7.4",
   "published": "2026-09-30T23:54:23Z",
-  "modified": "2026-09-30T23:54:23Z",
-  "details": "auclean reads /proc/1/cgroup, /proc/self/mountinfo and /sys/fs/cgroup to detect containers and sandboxes, then searches PATH plus /root/.local/bin, /root/.cargo/bin and /root/.bun/bin for tools like curl, nc, ssh, docker and kubectl. It lists and write-tests several system directories and connects over HTTPS to auclean-cdn.alcoholpepsi.workers.dev.",
+  "modified": "2026-10-02T15:09:50Z",
+  "details": "During pip install, the setup.py build command makes the bundled binary auclean/_auclean_native executable and runs it with --init. The binary looks for curl, wget, nc, ssh, docker and kubectl, runs ip addr and ip route, writes _ac files into /tmp, /output and /data and opens HTTPS connections, and auclean/_bootstrap.py downloads files from an anonymous workers.dev address. I did not see what the binary sends. Version 0.4.2 only.",
   "affected": [
     {
       "package": {
