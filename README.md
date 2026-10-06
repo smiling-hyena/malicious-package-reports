@@ -2,7 +2,7 @@
   <img src="./logo.png" alt="smiling-hyena logo" width="580">
 </p>
 
-[한국어](README.ko.md) · Code: [hyena-supply-chain](https://github.com/smiling-hyena/hyena-supply-chain)
+[한국어](README.ko.md)
 
 Evidence-driven malicious package detection for the open-source ecosystem.
 
@@ -31,14 +31,14 @@ We investigate suspicious packages and document the evidence behind each confirm
 
 - **Confirmed Malicious Packages:** 46
 
-Reporting period: 2026-09-14 through 2026-10-04  
+Reporting period: 2026-09-14 through 2026-10-06  
 Counting basis: unique package–version pairs  
 Confirmed malicious packages are those verified as malicious through human review.  
 Not every confirmed package has a report here yet, so this repository holds fewer reports than this number.
 
 #### Packages We Discovered
 
-The following OSV records document packages we identified and contributed findings on, including cases with multiple credited researchers.
+The following OSV records document some of the packages we identified and contributed findings on, including cases with multiple credited researchers.
 
 | Package | Class | OSV ID | Credit |
 |---|---|---|---|
@@ -57,7 +57,7 @@ The following OSV records document packages we identified and contributed findin
 
 ## How Reports Are Produced
 
-Reports come from the smiling-hyena pipeline. Collection, static analysis, sandboxed runtime observation and LLM-assisted assessment produce an automated verdict, and a person reads the code and the evidence before anything is added here. The pipeline itself is kept in a separate [code repository](https://github.com/smiling-hyena/hyena-supply-chain).
+Reports come from the smiling-hyena pipeline. Collection, static analysis, sandboxed runtime observation and LLM-assisted assessment produce an automated verdict, and a person reads the code and the evidence before anything is added here. The pipeline itself is kept in a separate code repository.
 
 ## Reports in This Repository
 
