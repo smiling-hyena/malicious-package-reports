@@ -107,20 +107,7 @@ withdrawn/                          우리가 틀린 보고서, 사유와 함께
 보고서와 캠페인 파일은 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 라이선스입니다.
 smiling-hyena를 출처로 밝히면 어떤 목적으로든 쓸 수 있습니다.
 
-## 팀
-
-패키지 생태계 연구, 악성코드 분석, 보안 엔지니어링 역량을 모아 smiling-hyena를 개발하고 개선합니다.
-
-- [@ben-dh-kim](https://github.com/ben-dh-kim)
-- [@eyalyal](https://github.com/eyalyal)
-- [@0xAxii](https://github.com/0xAxii)
-- [@Juhyeok0603](https://github.com/Juhyeok0603)
-- [@justkorean1681](https://github.com/justkorean1681)
-- [@OGAREE](https://github.com/OGAREE)
-- [@ragon5500-arch](https://github.com/ragon5500-arch)
-- [@Ridhdn](https://github.com/Ridhdn)
-- [@saic12](https://github.com/saic12)
-- [@WOVY](https://github.com/WOVY)
+`scripts/`의 검증 스크립트는 제한 없이 쓸 수 있습니다.
 
 ## 연락처
 

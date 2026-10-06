@@ -111,20 +111,7 @@ The reports and campaign files are licensed under
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): you may use them for
 any purpose as long as you credit smiling-hyena as the source.
 
-## Team
-
-We bring together package ecosystem research, malware analysis, and security engineering to build and improve smiling-hyena.
-
-- [@ben-dh-kim](https://github.com/ben-dh-kim)
-- [@eyalyal](https://github.com/eyalyal)
-- [@0xAxii](https://github.com/0xAxii)
-- [@Juhyeok0603](https://github.com/Juhyeok0603)
-- [@justkorean1681](https://github.com/justkorean1681)
-- [@OGAREE](https://github.com/OGAREE)
-- [@ragon5500-arch](https://github.com/ragon5500-arch)
-- [@Ridhdn](https://github.com/Ridhdn)
-- [@saic12](https://github.com/saic12)
-- [@WOVY](https://github.com/WOVY)
+The validation script in `scripts/` may be used without restriction.
 
 ## Contact
 
