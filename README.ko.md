@@ -52,6 +52,8 @@ smiling-hyena는 npm과 PyPI를 대상으로 악성 패키지 탐지 파이프�
 | PyPI/beautifytext | malicious | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) | 공동 발견 |
 | PyPI/donutpromotion | malicious | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) | 공동 발견 |
 | PyPI/friendly-tools | malicious | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) | 공동 발견 |
+| PyPI/zencleaner | malicious | [MAL-2026-17629](https://osv.dev/vulnerability/MAL-2026-17629) | 단독 발견 |
+| npm/virgil-cli | malicious | [MAL-2026-17630](https://osv.dev/vulnerability/MAL-2026-17630) | 단독 발견 |
 
 > 같은 OSV 기록에 다른 연구자가 기여자로 올라 있으면 그 기록에 함께 표시됩니다. 사례 보고서에는 코드가 무엇을 하는지, 어디에서 언제 실행되는지, 확인한 버전, 발견한 지표를 적습니다. 시험이나 개념 증명으로 보이는 패키지는 나머지와 구분해 둡니다. 보고서는 CC BY 4.0 라이선스이며, 정정은 이슈로 알려 주세요(아래 "잘못된 보고서를 발견하셨나요?" 참고).
 

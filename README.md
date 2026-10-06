@@ -52,6 +52,8 @@ The following OSV records document some of the packages we identified and contri
 | PyPI/beautifytext | malicious | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) | co-finder |
 | PyPI/donutpromotion | malicious | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) | co-finder |
 | PyPI/friendly-tools | malicious | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) | co-finder |
+| PyPI/zencleaner | malicious | [MAL-2026-17629](https://osv.dev/vulnerability/MAL-2026-17629) | sole finder |
+| npm/virgil-cli | malicious | [MAL-2026-17630](https://osv.dev/vulnerability/MAL-2026-17630) | sole finder |
 
 >*Where other researchers are credited on the same OSV record, the record lists them. Our case reports describe what the code does, where and when it runs, which versions we checked, and the indicators we found. Packages that look like tests or proofs of concept are kept apart from the rest. Reports are licensed CC BY 4.0, and corrections go through an issue (see "Wrong report?" below).*
 
