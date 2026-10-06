@@ -2,7 +2,7 @@
   <img src="./logo.png" alt="smiling-hyena logo" width="580">
 </p>
 
-[한국어](README.ko.md)
+[한국어](README.ko.md) · Code: [hyena-supply-chain](https://github.com/smiling-hyena/hyena-supply-chain)
 
 Evidence-driven malicious package detection for the open-source ecosystem.
 
@@ -40,70 +40,24 @@ Not every confirmed package has a report here yet, so this repository holds fewe
 
 The following OSV records document packages we identified and contributed findings on, including cases with multiple credited researchers.
 
-| Package | OSV ID |
-|---|---|
-| npm/jexkcode | [MAL-2026-16220](https://osv.dev/vulnerability/MAL-2026-16220) |
-| npm/radio-player-theme | [MAL-2026-16347](https://osv.dev/vulnerability/MAL-2026-16347) |
-| PyPI/my-private-pkg | [MAL-2026-17180](https://osv.dev/vulnerability/MAL-2026-17180) |
-| npm/cat-sis2go-utils | [MAL-2026-16071](https://osv.dev/vulnerability/MAL-2026-16071) |
-| npm/godsplan | [MAL-2026-17315](https://osv.dev/vulnerability/MAL-2026-17315) |
-| npm/@zeronexcode/baileys | [MAL-2026-17326](https://osv.dev/vulnerability/MAL-2026-17326) |
-| PyPI/friendly-greeting-tools | [MAL-2026-17416](https://osv.dev/vulnerability/MAL-2026-17416) |
-| PyPI/beautifytext | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) |
-| PyPI/donutpromotion | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) |
-| PyPI/friendly-tools | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) |
+| Package | Class | OSV ID | Credit |
+|---|---|---|---|
+| npm/jexkcode | malicious | [MAL-2026-16220](https://osv.dev/vulnerability/MAL-2026-16220) | sole finder |
+| npm/radio-player-theme | pentest | [MAL-2026-16347](https://osv.dev/vulnerability/MAL-2026-16347) | co-finder |
+| PyPI/my-private-pkg | malicious | [MAL-2026-17180](https://osv.dev/vulnerability/MAL-2026-17180) | co-finder |
+| npm/cat-sis2go-utils | malicious | [MAL-2026-16071](https://osv.dev/vulnerability/MAL-2026-16071) | co-finder |
+| npm/godsplan | malicious | [MAL-2026-17315](https://osv.dev/vulnerability/MAL-2026-17315) | sole finder |
+| npm/@zeronexcode/baileys | malicious | [MAL-2026-17326](https://osv.dev/vulnerability/MAL-2026-17326) | co-finder |
+| PyPI/friendly-greeting-tools | malicious | [MAL-2026-17416](https://osv.dev/vulnerability/MAL-2026-17416) | co-finder |
+| PyPI/beautifytext | malicious | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) | co-finder |
+| PyPI/donutpromotion | malicious | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) | co-finder |
+| PyPI/friendly-tools | malicious | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) | co-finder |
 
->*Where other researchers are credited on the same OSV record, the record lists them. Our case reports describe what the code does, where and when it runs, which versions we checked, and the indicators we found. Packages that look like tests or proofs of concept are kept apart from the rest. Reports are licensed CC BY 4.0, and corrections can be sent to smilinghyena4@gmail.com.*
+>*Where other researchers are credited on the same OSV record, the record lists them. Our case reports describe what the code does, where and when it runs, which versions we checked, and the indicators we found. Packages that look like tests or proofs of concept are kept apart from the rest. Reports are licensed CC BY 4.0, and corrections go through an issue (see "Wrong report?" below).*
 
-## Pipeline & Technical Features
+## How Reports Are Produced
 
-### Analysis Pipeline
-
-```mermaid
-flowchart TD
-    A["npm · PyPI"] --> B["Collector<br/>Collection & integrity checks"]
-    B --> C["Preparer<br/>Archive validation & file inventory"]
-    C --> D["SAST<br/>Static evidence extraction"]
-    D --> E{"DAST eligibility<br/>& safety checks"}
-    E -->|Eligible| F["DAST<br/>Isolated runtime observation"]
-    E -->|Skipped or blocked| G["Evidence & analysis status"]
-    F --> G
-    G --> H["LLM-assisted assessment"]
-    H --> I["Verified verdict rules"]
-    I --> J["Report generation"]
-    J --> K["Dashboard & notifications"]
-    K --> L["Human review"]
-```
-
-### Technical Features
-
-**Collector & Preparer**
-
-Collect registry metadata and package artifacts, validate hashes and sizes, check archive entries, and produce an inventory of extracted files without executing package code.
-
-**SAST**
-
-Inspect npm installation hooks and JavaScript entry points, and analyze PyPI build settings, Python syntax trees, and call relationships. Emit signals with file locations, code excerpts, and execution context.
-
-**DAST**
-
-Check runtime attestation, eligibility, and safety conditions before execution in a dedicated Docker and gVisor sandbox. Collect process, filesystem, environment, and network observations under controlled networking.
-
-**LLM assessment**
-
-Construct `LlmInput` from package metadata and SAST/DAST signal bundles, including incomplete or unavailable DAST states. The model returns a verdict, rationale, and cited signal IDs; validate the response format and citation IDs.
-
-**Verdict validation**
-
-Apply rules that check evidence connections, execution context, and observation scope. Record rule IDs, policy versions, and reasons for retaining or adjusting the original verdict.
-
-**Reporter & review storage**
-
-Store original and final verdicts, signal references, errors, limitations, and stage timings in `AnalysisReport`. Store human review results and change history separately in the database.
-
-**Shared contracts & orchestration**
-
-Exchange versioned data contracts between modules. Workers process `FETCH` and `PREPARE` jobs, while the orchestrator sequences preparation, SAST, DAST, assessment, validation, and reporting.
+Reports come from the smiling-hyena pipeline. Collection, static analysis, sandboxed runtime observation and LLM-assisted assessment produce an automated verdict, and a person reads the code and the evidence before anything is added here. The pipeline itself is kept in a separate [code repository](https://github.com/smiling-hyena/hyena-supply-chain).
 
 ## Reports in This Repository
 
@@ -136,9 +90,10 @@ contain the code of any reported package.
 
 ## Wrong report?
 
-Open an issue or email smilinghyena4@gmail.com with the package, version and
-what you think is wrong. We read the code again and, if we were wrong, move the
-file to `withdrawn/` with a short note on why. Please do not send a pull request
+Open an issue with the **Wrong report** form: the package, the version and
+what you think is wrong. Whoever on the team sees it first picks it up. We read
+the code again and, if we were wrong, move the file to `withdrawn/` with a short
+note on why. Please do not send a pull request
 that edits a report directly: reports are exported from our review records, and
 the next export would overwrite the change.
 
@@ -171,4 +126,5 @@ We bring together package ecosystem research, malware analysis, and security eng
 
 ## Contact
 
-smilinghyena4@gmail.com
+Open an issue in this repository. Whoever on the team sees it first picks it up.
+You can also write to smilinghyena4@gmail.com.

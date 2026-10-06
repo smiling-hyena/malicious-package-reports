@@ -1,0 +1,11 @@
+name: Question
+description: A question about a report, the report layout or how reports are produced
+title: "[Question] "
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+      description: Name the package, version or file you mean if it is about a report.
+    validations:
+      required: true

@@ -1,0 +1,60 @@
+name: Wrong report
+description: A published report is wrong, incomplete or out of date
+title: "[Wrong report] <ecosystem>/<package>"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for checking our work. Whoever on the team sees this first picks it up. We read the code again and, if the report was wrong, move it to `withdrawn/` with a short note on why.
+
+        Please do not attach malware or package archives. Describe what you found, or link to the public source. Please do not open a pull request that edits a report: reports are exported from our review records, and the next export would overwrite the change.
+  - type: dropdown
+    id: ecosystem
+    attributes:
+      label: Ecosystem
+      options:
+        - npm
+        - PyPI
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: Package name
+      placeholder: "example-package or @scope/example-package"
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Version or versions the report is about
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is wrong?
+      options:
+        - The package is not malicious
+        - The package is a test or a proof of concept, not an attack
+        - The description of what the code does is wrong
+        - The listed versions are wrong
+        - An indicator (domain, URL, IP) is wrong or should not be listed
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What you found
+      description: Say what the code does instead, where you looked (file and line, or a public link), and how you checked.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety
+      options:
+        - label: I am not attaching malware, package archives or credentials.
+          required: true

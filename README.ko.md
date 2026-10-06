@@ -2,7 +2,7 @@
   <img src="./logo.png" alt="smiling-hyena 로고" width="580">
 </p>
 
-[English](README.md)
+[English](README.md) · 코드: [hyena-supply-chain](https://github.com/smiling-hyena/hyena-supply-chain)
 
 오픈소스 생태계를 위한 근거 기반 악성 패키지 탐지.
 
@@ -40,70 +40,24 @@ smiling-hyena는 npm과 PyPI를 대상으로 악성 패키지 탐지 파이프�
 
 아래 OSV 기록에서 우리가 발견하고 분석 결과를 기여한 패키지를 확인할 수 있습니다. 여러 연구자가 함께 기여자로 기록된 사례도 포함합니다.
 
-| 패키지 | OSV ID |
-|---|---|
-| npm/jexkcode | [MAL-2026-16220](https://osv.dev/vulnerability/MAL-2026-16220) |
-| npm/radio-player-theme | [MAL-2026-16347](https://osv.dev/vulnerability/MAL-2026-16347) |
-| PyPI/my-private-pkg | [MAL-2026-17180](https://osv.dev/vulnerability/MAL-2026-17180) |
-| npm/cat-sis2go-utils | [MAL-2026-16071](https://osv.dev/vulnerability/MAL-2026-16071) |
-| npm/godsplan | [MAL-2026-17315](https://osv.dev/vulnerability/MAL-2026-17315) |
-| npm/@zeronexcode/baileys | [MAL-2026-17326](https://osv.dev/vulnerability/MAL-2026-17326) |
-| PyPI/friendly-greeting-tools | [MAL-2026-17416](https://osv.dev/vulnerability/MAL-2026-17416) |
-| PyPI/beautifytext | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) |
-| PyPI/donutpromotion | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) |
-| PyPI/friendly-tools | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) |
+| 패키지 | 분류 | OSV ID | 발견 |
+|---|---|---|---|
+| npm/jexkcode | malicious | [MAL-2026-16220](https://osv.dev/vulnerability/MAL-2026-16220) | 단독 발견 |
+| npm/radio-player-theme | pentest | [MAL-2026-16347](https://osv.dev/vulnerability/MAL-2026-16347) | 공동 발견 |
+| PyPI/my-private-pkg | malicious | [MAL-2026-17180](https://osv.dev/vulnerability/MAL-2026-17180) | 공동 발견 |
+| npm/cat-sis2go-utils | malicious | [MAL-2026-16071](https://osv.dev/vulnerability/MAL-2026-16071) | 공동 발견 |
+| npm/godsplan | malicious | [MAL-2026-17315](https://osv.dev/vulnerability/MAL-2026-17315) | 단독 발견 |
+| npm/@zeronexcode/baileys | malicious | [MAL-2026-17326](https://osv.dev/vulnerability/MAL-2026-17326) | 공동 발견 |
+| PyPI/friendly-greeting-tools | malicious | [MAL-2026-17416](https://osv.dev/vulnerability/MAL-2026-17416) | 공동 발견 |
+| PyPI/beautifytext | malicious | [MAL-2026-17417](https://osv.dev/vulnerability/MAL-2026-17417) | 공동 발견 |
+| PyPI/donutpromotion | malicious | [MAL-2026-17196](https://osv.dev/vulnerability/MAL-2026-17196) | 공동 발견 |
+| PyPI/friendly-tools | malicious | [MAL-2026-17419](https://osv.dev/vulnerability/MAL-2026-17419) | 공동 발견 |
 
-> 같은 OSV 기록에 다른 연구자가 기여자로 올라 있으면 그 기록에 함께 표시됩니다. 사례 보고서에는 코드가 무엇을 하는지, 어디에서 언제 실행되는지, 확인한 버전, 발견한 지표를 적습니다. 시험이나 개념 증명으로 보이는 패키지는 나머지와 구분해 둡니다. 보고서는 CC BY 4.0 라이선스이며, 정정은 smilinghyena4@gmail.com 으로 보낼 수 있습니다.
+> 같은 OSV 기록에 다른 연구자가 기여자로 올라 있으면 그 기록에 함께 표시됩니다. 사례 보고서에는 코드가 무엇을 하는지, 어디에서 언제 실행되는지, 확인한 버전, 발견한 지표를 적습니다. 시험이나 개념 증명으로 보이는 패키지는 나머지와 구분해 둡니다. 보고서는 CC BY 4.0 라이선스이며, 정정은 이슈로 알려 주세요(아래 "잘못된 보고서를 발견하셨나요?" 참고).
 
-## 파이프라인 및 기술적 특징
+## 보고서가 만들어지는 방식
 
-### 분석 파이프라인
-
-```mermaid
-flowchart TD
-    A["npm · PyPI"] --> B["Collector<br/>패키지 수집 및 무결성 검증"]
-    B --> C["Preparer<br/>압축 파일 검증 및 파일 목록 생성"]
-    C --> D["SAST<br/>정적 분석 근거 추출"]
-    D --> E{"DAST 대상 여부<br/>및 안전 조건 확인"}
-    E -->|실행 가능| F["DAST<br/>격리 환경에서 실행 행위 관찰"]
-    E -->|생략 또는 차단| G["분석 근거 및 상태 통합"]
-    F --> G
-    G --> H["LLM 기반 판정"]
-    H --> I["검증된 판정 규칙 적용"]
-    I --> J["보고서 생성"]
-    J --> K["대시보드 및 알림"]
-    K --> L["사람의 검토"]
-```
-
-### 기술적 특징
-
-**Collector · Preparer**
-
-레지스트리 메타데이터와 패키지 파일을 수집하고, 해시·크기 및 압축 항목을 검증합니다. 패키지 코드를 실행하지 않고 압축을 해제해 파일 목록을 생성합니다.
-
-**SAST**
-
-npm의 설치 훅·JavaScript 진입점과 PyPI의 빌드 설정·Python 구문 트리·호출 관계를 분석합니다. 파일 위치, 코드 발췌, 실행 문맥을 포함한 시그널을 생성합니다.
-
-**DAST**
-
-런타임 증명, 대상 선정, 안전 조건을 확인한 뒤 전용 Docker·gVisor 샌드박스에서 실행합니다. 네트워크를 통제하며 프로세스, 파일 시스템, 환경변수, 통신 기록을 수집합니다.
-
-**LLM 판정**
-
-패키지 메타데이터와 SAST·DAST 시그널 묶음으로 `LlmInput`을 구성하며, DAST의 미완료·미수행 상태도 전달합니다. 모델이 판정·사유·인용 시그널 ID를 반환하면 응답 형식과 인용 ID를 검증합니다.
-
-**판정 검증**
-
-근거 간 연결, 실행 문맥, 관찰 범위를 확인하는 규칙을 적용합니다. 규칙 ID, 정책 버전, 원판정을 유지하거나 조정한 이유를 기록합니다.
-
-**Reporter · 검토 기록 저장**
-
-원판정·최종 판정, 시그널 참조, 오류, 제한사항, 단계별 시간을 `AnalysisReport`에 저장합니다. 사람의 검토 결과와 변경 이력은 데이터베이스에 별도로 저장합니다.
-
-**공통 데이터 규격 · 실행 조정**
-
-모듈 간에 버전이 관리되는 데이터 규격을 사용합니다. Worker가 `FETCH`·`PREPARE` 작업을 처리하고, Orchestrator가 준비·SAST·DAST·판정·검증·보고서 생성 순서를 연결합니다.
+보고서는 smiling-hyena 파이프라인에서 나옵니다. 수집, 정적 분석, 격리된 런타임 관측, LLM 기반 평가로 자동 판정을 만들고, 사람이 코드와 근거를 읽어 확정한 것만 이 저장소에 추가합니다. 파이프라인 자체는 별도의 [코드 저장소](https://github.com/smiling-hyena/hyena-supply-chain)에 둡니다.
 
 ## 이 저장소의 보고서
 
@@ -135,8 +89,9 @@ withdrawn/                          우리가 틀린 보고서, 사유와 함께
 
 ## 잘못된 보고서를 발견하셨나요?
 
-패키지, 버전, 무엇이 잘못됐다고 보시는지를 이슈로 열거나 smilinghyena4@gmail.com 으로 보내 주세요.
-코드를 다시 읽고 우리가 틀렸다면 파일을 짧은 사유와 함께 `withdrawn/`으로 옮깁니다.
+**Wrong report** 양식으로 이슈를 열어 패키지, 버전, 무엇이 잘못됐다고 보시는지를 알려 주세요.
+팀원 중 먼저 확인한 사람이 맡습니다. 코드를 다시 읽고 우리가 틀렸다면 파일을 짧은 사유와 함께
+`withdrawn/`으로 옮깁니다.
 보고서를 직접 고치는 풀 리퀘스트는 보내지 말아 주세요. 보고서는 검토 기록에서 내보내므로
 다음 내보내기에서 변경이 덮어써집니다.
 
@@ -167,4 +122,5 @@ smiling-hyena를 출처로 밝히면 어떤 목적으로든 쓸 수 있습니다
 
 ## 연락처
 
-smilinghyena4@gmail.com
+이 저장소에 이슈를 열어 주세요. 팀원 중 먼저 확인한 사람이 맡습니다.
+smilinghyena4@gmail.com 으로 보내셔도 됩니다.
