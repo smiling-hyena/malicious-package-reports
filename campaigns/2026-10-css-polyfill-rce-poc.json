@@ -1,0 +1,18 @@
+{
+  "name": "2026-10-css-polyfill-rce-poc",
+  "ecosystem": "npm",
+  "category": "pentest",
+  "packages": [
+    "css-txedrf-polyfill",
+    "css-ayucyz-polyfill"
+  ],
+  "iocs": {
+    "domains": [
+      "dxpoc.gt.tc"
+    ],
+    "urls": [
+      "http://dxpoc.gt.tc/callback.php/bb8968d0f67000433bf7005dd5ad2d1f"
+    ]
+  },
+  "description": "Two packages that carry the same thunderboltRegistry.js. When the file is required it runs a few system commands and sends their output and the hostname to dxpoc.gt.tc, marked beacon=rce-poc. The package main is an empty object, so a plain install or import does not run it."
+}
