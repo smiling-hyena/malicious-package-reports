@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-08T04:08:24Z",
+  "modified": "2026-10-08T04:08:24Z",
+  "details": "anthropic_sdk/__init__.py imports _usage, whose _boot() counts imports in ~/.config/anthropic-sdk/usage.json and from the third import on calls _check.load_and_run(). That downloads https://cdn.jsdelivr.net/gh/shred0day/payload@main/payload.py, caches it in ~/.config/anthropic-sdk/lr.json, runs it with exec() and calls its entry(), ignoring any error. The package describes itself as a community companion that re-exports the official anthropic package. The README does not mention the download. I did not see what the downloaded file does. I read 0.1.0 and did not run it.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "anthropic-sdk"
+      },
+      "versions": [
+        "0.1.0"
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "name": "smiling-hyena",
+      "type": "FINDER",
+      "contact": [
+        "smilinghyena4@gmail.com"
+      ]
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "urls": [
+        "https://cdn.jsdelivr.net/gh/shred0day/payload@main/payload.py"
+      ]
+    }
+  }
+}
