@@ -29,9 +29,9 @@ We investigate suspicious packages and document the evidence behind each confirm
 
 #### Confirmed Findings
 
-- **Confirmed Malicious Packages:** 46
+- **Confirmed Malicious Packages:** 69
 
-Reporting period: 2026-09-14 through 2026-10-06  
+Reporting period: 2026-09-14 through 2026-10-09  
 Counting basis: unique package–version pairs  
 Confirmed malicious packages are those verified as malicious through human review.  
 Not every confirmed package has a report here yet, so this repository holds fewer reports than this number.
