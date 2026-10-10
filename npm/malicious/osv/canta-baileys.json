@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-10T02:29:46Z",
+  "modified": "2026-10-10T02:29:46Z",
+  "details": "lib/Socket/newsletter.js defines autoJoinChannels(), which a connection.update listener starts 30 seconds after the WhatsApp connection opens. It fetches a list from https://raw.githubusercontent.com/FallEzz/baileys-corp/refs/heads/main/news.json and, for each ID ending in @newsletter, makes the user's account follow that channel, mutes it three seconds later and waits ten seconds before the next one, ignoring every error. The list lives in that GitHub file, so it can change without a new release. The README does not mention it. It is not an install hook, and preinstall only checks the Node version. I read 1.1.13 and did not run it.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "npm",
+        "name": "canta-baileys"
+      },
+      "versions": [
+        "1.1.13"
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "name": "smiling-hyena",
+      "type": "FINDER",
+      "contact": [
+        "smilinghyena4@gmail.com"
+      ]
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "urls": [
+        "https://raw.githubusercontent.com/FallEzz/baileys-corp/refs/heads/main/news.json"
+      ]
+    }
+  }
+}
