@@ -55,6 +55,8 @@ The following OSV records document some of the packages we identified and contri
 | PyPI/zencleaner | malicious | [MAL-2026-17629](https://osv.dev/vulnerability/MAL-2026-17629) | sole finder |
 | npm/virgil-cli | malicious | [MAL-2026-17630](https://osv.dev/vulnerability/MAL-2026-17630) | sole finder |
 | npm/css-reading-display-polyfill | malicious | [MAL-2026-17656](https://osv.dev/vulnerability/MAL-2026-17656) | co-finder |
+| PyPI/py2ops | malicious | [MAL-2026-17807](https://osv.dev/vulnerability/MAL-2026-17807) | sole finder |
+| PyPI/ig-gox | malicious | [MAL-2026-17712](https://osv.dev/vulnerability/MAL-2026-17712) | co-finder |
 
 >*Where other researchers are credited on the same OSV record, the record lists them. Our case reports describe what the code does, where and when it runs, which versions we checked, and the indicators we found. Packages that look like tests or proofs of concept are kept apart from the rest. Reports are licensed CC BY 4.0, and corrections go through an issue (see "Wrong report?" below).*
 
