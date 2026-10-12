@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.7.4",
+  "published": "2026-10-12T15:43:19Z",
+  "modified": "2026-10-12T15:43:19Z",
+  "details": "The package installs a console command named python2 (pyyi.cli:main), so it runs when someone types python2. _register() in cli.py POSTs the hostname and OS to a space-z.ai server and keeps the returned apiKey in ~/.python2/config.json. Bare python2 is a real REPL that reads input with the echo off and sends typed words to the server's unlock endpoint. Other commands download gzip and base64 code from /api/cli/payload and run it with exec in memory, hiding failures behind Python's can't open file error. Comments in the file call this the cover. I did not see what the served code does. I read 2.4 and 2.4.1, which differ only in the version string, and did not run them.",
+  "affected": [
+    {
+      "package": {
+        "ecosystem": "PyPI",
+        "name": "pyyi"
+      },
+      "versions": [
+        "2.4",
+        "2.4.1"
+      ]
+    }
+  ],
+  "credits": [
+    {
+      "name": "smiling-hyena",
+      "type": "FINDER",
+      "contact": [
+        "smilinghyena4@gmail.com"
+      ]
+    }
+  ],
+  "database_specific": {
+    "iocs": {
+      "domains": [
+        "preview-chat-960504a9-b4e0-4b69-bc80-6ac3d4fa4ae0.space-z.ai",
+        "b196q82k8891-d.space-z.ai"
+      ],
+      "urls": [
+        "https://preview-chat-960504a9-b4e0-4b69-bc80-6ac3d4fa4ae0.space-z.ai/api/cli/init",
+        "https://preview-chat-960504a9-b4e0-4b69-bc80-6ac3d4fa4ae0.space-z.ai/api/cli/unlock",
+        "https://preview-chat-960504a9-b4e0-4b69-bc80-6ac3d4fa4ae0.space-z.ai/api/cli/payload"
+      ]
+    }
+  }
+}
